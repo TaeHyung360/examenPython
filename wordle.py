@@ -1,6 +1,7 @@
 from random import random
+import re
 from pyparsing import line
-
+import random
 
 def choose_secret(nombre_fichero):
     """Dado un nombre de fichero, esta funciÃ³n devuelve una palabra aleatoria de este fichero transformada a mayÃºsculas.
@@ -10,16 +11,12 @@ def choose_secret(nombre_fichero):
       secret: Palabra elegida aleatoriamente del fichero transformada a mayÃºsculas. Ej. "CREMA"
     """
     f = open(nombre_fichero, mode="rt")
-
-    #num = random()
-    #print(num)
-
-    linea = f.readline()
+    num = random.randint(0,29)
+    lista_lineas = f.readlines()
+    palabra = lista_lineas[num]  
+    return palabra.upper()
     
-
-    print(linea)
-    
-def compare_words():
+def compare_words(word,secret):
     """Dadas dos palabras en mayÃºsculas (word y secret), esta funciÃ³n calcula las posiciones de las letras de word que aparecen en la misma posiciÃ³n en secret, y las posiciones de las letras de word que aparecen en secret pero en una posiciÃ³n distinta.
     Args:
       word: Una palabra. Ej. "CAMPO"
@@ -28,6 +25,19 @@ def compare_words():
       same_position: Lista de posiciones de word cuyas letras coinciden en la misma posiciÃ³n en secret. En el caso anterior: [0]
       same_letter: Lista de posiciones de word cuyas letras estÃ¡n en secret pero en posiciones distintas. En el caso anterior: [1,2]
     """
+    same_position = []
+    same_letter = []
+
+    for i in  range(len(secret)):
+        if(word[i]==secret[i]):
+            same_position.append(i)
+    for i in range(len(secret)):
+        for j in  range(len(word)):
+            if(word[i]==secret[j]):
+                if(i!=j):
+                    same_letter.append(i)
+
+    return same_position,same_letter
 
 def print_word():
     """Dada una palabra, una lista same_position y otra lista same_letter, esta funciÃ³n crearÃ¡ un string donde aparezcan en mayÃºsculas las letras de la palabra que ocupen las posiciones de same_position, en minÃºsculas las letras de la palabra que ocupen las posiciones de same_letter y un guiÃ³n (-) en el resto de posiciones
@@ -55,7 +65,9 @@ def check_valid_word():
     Returns:
       word: Palabra introducida por el usuario que estÃ¡ en la lista.
     """
-
+choose_secret("palabras_reduced.txt")
+compare_words("CAMPO","CREMA")   
+"""
 if __name__ == "__main__":
     secret=choose_secret("palabras_reduced.txt")
     print("Palabra a adivinar: "+secret)#Debug: esto es para que sepas la palabra que debes adivinar
@@ -68,3 +80,4 @@ if __name__ == "__main__":
             print("HAS GANADO!!")
             exit()
     print("LO SIENTO, NO LA HAS ADIVINIDADO. LA PALABRA ERA "+secret)   
+"""
