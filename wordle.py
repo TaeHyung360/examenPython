@@ -84,9 +84,19 @@ def choose_secret_advanced(nombre_fichero):
     #print(lista_filtrada)
     lista_palabras_tamanyo_5_filtrada = []
     for i in range(len(palabras)):
-      if len(palabras[i]) == 5:
+      if len(palabras[i]) == 6:
         lista_palabras_tamanyo_5_filtrada.append(palabras[i])
-        
+
+    #lista_filtrada = [nombre for nombre in lista_palabras_tamanyo_5_filtrada if nombre not in palabras_no_deseadas]
+    lista_filtrada = []
+    lis = []
+    for i in range(len(palabras_no_deseadas)):
+      palabra1 = palabras_no_deseadas[i]
+      for j in range(len(palabra1)):
+        for r in range(len(palabras_no_deseadas)):
+          if(palabra1[j] == palabras_no_deseadas[r]):
+              lista_filtrada.append(palabra1)
+    print(lista_filtrada)
 def check_valid_word(lista):
     """Dada una lista de palabras, esta funciÃ³n pregunta al usuario que introduzca una palabra hasta que 
     introduzca una que estÃ© en la lista. Esta palabra es la que devolverÃ¡ la funciÃ³n.
@@ -106,21 +116,25 @@ def check_valid_word(lista):
 #choose_secret("palabras_reduced.txt")
 #compare_words("CAMPO","CREMA")   
 #print_word("CAMPO",[0],[1,2])
+#choose_secret_advanced("palabras_extended.txt")
 
-choose_secret_advanced("palabras_extended.txt")
-"""
 if __name__ == "__main__":
     secret=choose_secret("palabras_reduced.txt")
     print("Palabra a adivinar: "+secret)#Debug: esto es para que sepas la palabra que debes adivinar
     for repeticiones in range(0,6):
-        check_valid_word(["juan","armel","alonso"])
+        #check_valid_word(["juan","armel","alonso"])
         word = input("Introduce una nueva palabra: ")
-        same_position, same_letter = compare_words()
+        same_position, same_letter = compare_words(word,secret)
         resultado=print_word()
         print(resultado)
         if word == secret:
             print("HAS GANADO!!")
             exit()
+    i = 0
+    while i ==10:
+        resultado = check_valid_word(["juan","armel","alonso"])
+        if resultado != "":
+            i = 10
+            
 
     print("LO SIENTO, NO LA HAS ADIVINIDADO. LA PALABRA ERA "+secret)   
-"""
