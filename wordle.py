@@ -97,6 +97,7 @@ def choose_secret_advanced(nombre_fichero):
           if(palabra1[j] == palabras_no_deseadas[r]):
               lista_filtrada.append(palabra1)
     print(lista_filtrada)
+    
 def check_valid_word(lista):
     """Dada una lista de palabras, esta funciÃ³n pregunta al usuario que introduzca una palabra hasta que 
     introduzca una que estÃ© en la lista. Esta palabra es la que devolverÃ¡ la funciÃ³n.
