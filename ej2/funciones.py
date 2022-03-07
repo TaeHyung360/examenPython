@@ -1,7 +1,8 @@
 import random
 
 def encontrar_menores(diccionario,letra):
-    """Dado un diccionario de palabras, y una letra, esta funciÃ³n devuelve la lista de palabras que empiezan por una letra que alfabÃ©ticamente estÃ¡ antes que la indicada.
+    """Dado un diccionario de palabras, y una letra, esta funciÃ³n devuelve la lista de palabras que empiezan 
+    por una letra que alfabÃ©ticamente estÃ¡ antes que la indicada.
     Args:
       diccionario
       letra
